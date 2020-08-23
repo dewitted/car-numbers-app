@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //===Material Library for Front-end design===============
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -37,6 +38,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    ReactiveFormsModule,
     HttpClientModule,
     MatToolbarModule,
     MatFormFieldModule,

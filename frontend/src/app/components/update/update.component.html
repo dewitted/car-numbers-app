@@ -1,1 +1,40 @@
-<p>update works!</p>
+<div>
+  <br />
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Update Entry</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br />
+    <form [formGroup]="updateForm" class="edit-form">
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          placeholder="Car Number"
+          formControlName="number"
+          #number
+        />
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          placeholder="Owner Name"
+          formControlName="ownername"
+          #ownername
+        />
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br />
+      <button mat-raised-button color="accent" routerLink="/list">Back</button>
+      <button
+        type="submit"
+        (click)="updateEntry(number.value, ownername.value)"
+        [disabled]="updateForm.pristine || updateForm.invalid"
+        mat-raised-button
+        color="primary"
+      >
+        Save
+      </button>
+    </form>
+  </mat-card>
+</div>
