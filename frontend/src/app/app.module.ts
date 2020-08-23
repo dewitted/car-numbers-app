@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 //===Material Library for Front-end design===============
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -20,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './components/list/list.component';
 import { AddComponent } from './components/add/add.component';
 import { UpdateComponent } from './components/update/update.component';
+//Setting up the database
+import { EntryService } from './entry.service';
 
 const routes: Routes = [
   { path: 'add', component: AddComponent },
@@ -34,6 +37,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
@@ -45,7 +49,7 @@ const routes: Routes = [
     MatDividerModule,
     MatSnackBarModule,
   ],
-  providers: [],
+  providers: [EntryService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

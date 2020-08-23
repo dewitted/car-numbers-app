@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { EntryService } from '../../entry.service';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
+  constructor(private entryService: EntryService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.entryService.getEntries().subscribe((entries) => {
+      console.log('Entries are being retrieved');
+    });
   }
-
 }
