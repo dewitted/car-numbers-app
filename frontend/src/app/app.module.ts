@@ -15,6 +15,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 //===Material Library for Front-end design===============
 
 import { AppComponent } from './app.component';
@@ -50,6 +52,8 @@ const routes: Routes = [
     MatTableModule,
     MatDividerModule,
     MatSnackBarModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [EntryService],
   bootstrap: [AppComponent],

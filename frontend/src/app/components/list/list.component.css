@@ -2,6 +2,10 @@ table {
   width: 100%;
 }
 
+.search {
+  margin-left: 15px;
+}
+
 .mat-column-right {
   text-align: center;
 }
