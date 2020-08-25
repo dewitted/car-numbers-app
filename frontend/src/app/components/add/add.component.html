@@ -9,20 +9,76 @@
     <form [formGroup]="createForm" class="create-form">
       <mat-form-field class="field-full-width">
         <input
+          [class.is-invalid]="
+            createForm.get('number').invalid && createForm.get('number').touched
+          "
+          onInput="this.value = this.value.toUpperCase()"
           matInput
+          maxlength="6"
           placeholder="Car Number"
           formControlName="number"
           #number
         />
+        <div
+          *ngIf="
+            createForm.get('number').invalid && createForm.get('number').touched
+          "
+        >
+          <small
+            *ngIf="createForm.get('number').errors?.required"
+            class="text-danger"
+            >Registration plate number is required</small
+          >
+          <small
+            *ngIf="createForm.get('number').errors?.forbiddenName"
+            class="text-danger"
+            >Please enter the plate number in a valid format</small
+          >
+          <small
+            *ngIf="createForm.get('number').errors?.minlength"
+            class="text-danger"
+            >PLate number must be longer than 3 symbols</small
+          >
+          <!-- <small *ngIF="userForm.get('number').errors?.format" class="text-danger">The car number is not of a valid format</small> -->
+        </div>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input
+          [class.is-invalid]="
+            createForm.get('ownername').invalid &&
+            createForm.get('ownername').touched
+          "
+          onInput="this.value = this.value.toUpperCase()"
           matInput
+          maxlength="30"
           placeholder="Owner Name"
           formControlName="ownername"
           #ownername
         />
+        <div
+          *ngIf="
+            createForm.get('ownername').invalid &&
+            createForm.get('ownername').touched
+          "
+        >
+          <small
+            *ngIf="createForm.get('ownername').errors?.required"
+            class="text-danger"
+            >Ownername is required</small
+          >
+          <small
+            *ngIf="createForm.get('ownername').errors?.forbiddenName"
+            class="text-danger"
+            >Please enter the ownername in a valid format</small
+          >
+          <small
+            *ngIf="createForm.get('ownername').errors?.minlength"
+            class="text-danger"
+            >Ownername must be at least 4 symbols</small
+          >
+        </div>
       </mat-form-field>
+      <br />
       <mat-divider></mat-divider>
       <br />
       <button mat-raised-button color="accent" routerLink="/list">Back</button>

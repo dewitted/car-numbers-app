@@ -6,6 +6,8 @@ import { Entry } from '../../entry.model';
 import { EntryService } from '../../entry.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/dialog/dialog.component';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +18,11 @@ export class ListComponent implements OnInit {
   showedColumns = ['number', 'ownername', 'options'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private entryService: EntryService, private router: Router) {}
+  constructor(
+    private entryService: EntryService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   dataSource = new MatTableDataSource<Entry>();
   items: any;
@@ -40,8 +46,13 @@ export class ListComponent implements OnInit {
   }
 
   deleteEntry(id) {
-    this.entryService.deleteEntry(id).subscribe(() => {
-      this.fetchEntries();
+    let dialogRef = this.dialog.open(DialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == 'true') {
+        this.entryService.deleteEntry(id).subscribe(() => {
+          this.fetchEntries();
+        });
+      } else console.log('No Action Taken');
     });
   }
 

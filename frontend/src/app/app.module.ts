@@ -17,6 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 //===Material Library for Front-end design===============
 
 import { AppComponent } from './app.component';
@@ -24,8 +25,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './components/list/list.component';
 import { AddComponent } from './components/add/add.component';
 import { UpdateComponent } from './components/update/update.component';
+
 //Setting up the database
 import { EntryService } from './entry.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 const routes: Routes = [
   { path: 'add', component: AddComponent },
@@ -35,7 +38,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, AddComponent, UpdateComponent],
+  declarations: [
+    AppComponent,
+    ListComponent,
+    AddComponent,
+    UpdateComponent,
+    DialogComponent,
+  ],
+  entryComponents: [DialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -54,6 +64,7 @@ const routes: Routes = [
     MatSnackBarModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
   ],
   providers: [EntryService],
   bootstrap: [AppComponent],
