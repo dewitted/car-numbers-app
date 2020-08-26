@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EntryService } from '../../entry.service';
 import { badNumberValidator } from '../shared/car-number.validator';
+import { CustomValidationService } from '../custom-validation.service';
 
 @Component({
   selector: 'app-add',
@@ -15,7 +16,8 @@ export class AddComponent implements OnInit {
   constructor(
     private entryService: EntryService,
     private fb: FormBuilder,
-    private Router: Router
+    private Router: Router,
+    private customValidator: CustomValidationService
   ) {
     this.createForm = this.fb.group({
       number: [
@@ -27,6 +29,7 @@ export class AddComponent implements OnInit {
             /^[A-Z]{6}$|\`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\"|\;|\:|\s/
           ),
         ],
+        this.customValidator.validateNumberNotTaken.bind(this.customValidator),
       ],
       ownername: [
         '',
@@ -41,6 +44,7 @@ export class AddComponent implements OnInit {
     });
   }
 
+  items: any;
   addEntry(number, ownername) {
     this.entryService.addEntry(number, ownername).subscribe(() => {
       this.Router.navigate(['/list']);

@@ -5,6 +5,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { EntryService } from '../../entry.service';
+import { badNumberValidator } from '../shared/car-number.validator';
+import { CustomValidationService } from '../custom-validation.service';
+
 import { Entry } from '../../entry.model';
 
 @Component({
@@ -22,14 +25,34 @@ export class UpdateComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private customValidator: CustomValidationService
   ) {
     this.createForm();
   }
   createForm() {
     this.updateForm = this.fb.group({
-      number: ['', Validators.required],
-      ownername: [''],
+      number: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          badNumberValidator(
+            /^[A-Z]{6}$|\`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\"|\;|\:|\s/
+          ),
+        ],
+        this.customValidator.validateNumberNotTaken.bind(this.customValidator),
+      ],
+      ownername: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          badNumberValidator(
+            /\`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\"|\;|\:|\s/
+          ),
+        ],
+      ],
     });
   }
 

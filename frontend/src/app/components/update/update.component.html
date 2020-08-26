@@ -9,19 +9,78 @@
     <form [formGroup]="updateForm" class="edit-form">
       <mat-form-field class="field-full-width">
         <input
+          [class.is-invalid]="
+            updateForm.get('number').invalid && updateForm.get('number').touched
+          "
+          onInput="this.value = this.value.toUpperCase()"
           matInput
+          maxlength="6"
           placeholder="Car Number"
           formControlName="number"
           #number
         />
+        <div
+          *ngIf="
+            updateForm.get('number').invalid && updateForm.get('number').touched
+          "
+        >
+          <small
+            *ngIf="updateForm.get('number').errors?.required"
+            class="text-danger"
+            >Registration plate number is required</small
+          >
+          <small
+            *ngIf="updateForm.get('number').errors?.forbiddenName"
+            class="text-danger"
+            >Please enter the plate number in a valid format</small
+          >
+          <small
+            *ngIf="updateForm.get('number').errors?.minlength"
+            class="text-danger"
+            >PLate number must be longer than 3 symbols</small
+          >
+          <small
+            *ngIf="updateForm.get('number').errors?.numberTaken"
+            class="text-danger"
+            >The number must be unique!</small
+          >
+        </div>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input
+          [class.is-invalid]="
+            updateForm.get('ownername').invalid &&
+            updateForm.get('ownername').touched
+          "
+          onInput="this.value = this.value.toUpperCase()"
           matInput
+          maxlength="30"
           placeholder="Owner Name"
           formControlName="ownername"
           #ownername
         />
+        <div
+          *ngIf="
+            updateForm.get('ownername').invalid &&
+            updateForm.get('ownername').touched
+          "
+        >
+          <small
+            *ngIf="updateForm.get('ownername').errors?.required"
+            class="text-danger"
+            >Ownername is required</small
+          >
+          <small
+            *ngIf="updateForm.get('ownername').errors?.forbiddenName"
+            class="text-danger"
+            >Please enter the ownername in a valid format</small
+          >
+          <small
+            *ngIf="updateForm.get('ownername').errors?.minlength"
+            class="text-danger"
+            >Ownername must be at least 4 symbols</small
+          >
+        </div>
       </mat-form-field>
       <mat-divider></mat-divider>
       <br />

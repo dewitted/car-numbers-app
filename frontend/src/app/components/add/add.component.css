@@ -6,14 +6,3 @@
 .field-full-width {
   width: 100%;
 }
-
-mat-form-field {
-  position: relative;
-}
-
-mat-form-field .text-danger {
-  color: red;
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-}

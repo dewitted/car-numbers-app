@@ -39,7 +39,11 @@
             class="text-danger"
             >PLate number must be longer than 3 symbols</small
           >
-          <!-- <small *ngIF="userForm.get('number').errors?.format" class="text-danger">The car number is not of a valid format</small> -->
+          <small
+            *ngIf="createForm.get('number').errors?.numberTaken"
+            class="text-danger"
+            >The number must be unique!</small
+          >
         </div>
       </mat-form-field>
       <mat-form-field class="field-full-width">
